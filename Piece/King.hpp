@@ -2,7 +2,7 @@
 #define KING
 
 #include"../Piece.hpp"
-#include"../ChessPiece.hpp"
+#include"../ChessField.hpp"
 
 class King : public Piece {
 

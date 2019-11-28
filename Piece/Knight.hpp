@@ -2,7 +2,7 @@
 #define KNIGHT
 
 #include"../Piece.hpp"
-#include"../ChessPiece.hpp"
+#include"../ChessField.hpp"
 
 class Knight : public Piece {
 

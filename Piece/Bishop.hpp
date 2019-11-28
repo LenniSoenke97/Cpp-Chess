@@ -2,7 +2,7 @@
 #define BISHOP
 
 #include"../Piece.hpp"
-#include"../ChessPiece.hpp"
+#include"../ChessField.hpp"
 
 class Bishop : public Piece {
 

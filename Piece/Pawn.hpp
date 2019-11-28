@@ -2,7 +2,7 @@
 #define PAWN
 
 #include"../Piece.hpp"
-#include"../ChessPiece.hpp"
+#include"../ChessField.hpp"
 
 class Pawn : public Piece {
 

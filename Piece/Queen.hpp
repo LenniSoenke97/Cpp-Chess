@@ -2,7 +2,7 @@
 #define QUEEN
 
 #include"../Piece.hpp"
-#include"../ChessPiece.hpp"
+#include"../ChessField.hpp"
 
 class Queen : public Piece {
 
