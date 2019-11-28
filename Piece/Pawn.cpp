@@ -1,6 +1,6 @@
 #include"Pawn.hpp"
 
-virtual bool Pawn::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
+bool override Pawn::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
 {
 
     if (canKillDiagonal(source, destination, board)) return true;

@@ -1,20 +1,17 @@
 #include"King.hpp"
 
-virtual bool King::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
+bool override King::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
 {
     // special case for the rook and king switch
-  if (!isWithinMaxDistance()) return false;
-  if (canMoveDiagonal()) return true;
-  if (canMoveVertical()) return true;
-  if (isHorizontal()) return true;
+  if (!isWithinMaxDistance(source, destination)) return false;
+  if (canMoveDiagonal(source, destination, board)) return true;
+  if (canMoveVertical(source, destination, board)) return true;
+  if (isHorizontal(source, destination, board)) return true;
 
   return false;
 };
 
 bool King::castling(ChessField* source, ChessField* destination) {
-    // has to be rook
-    // has to be same row
-    // has to have none between
 
     Piece* dest_piece = destination->piece;
     if (!(Rook*) dest_piece) return false;

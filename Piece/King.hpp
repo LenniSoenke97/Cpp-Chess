@@ -1,7 +1,7 @@
 #ifndef KING
 #define KING
 
-#include"Piece.hpp"
+#include"../Piece.hpp"
 #include"../ChessPiece.hpp"
 
 class King : public Piece {
@@ -10,7 +10,8 @@ class King : public Piece {
     
   public:
     King(bool isWhite):Piece::Piece(isWhite) {};
-  virtual bool canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/);
-        
+    bool override canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/);
+
+    bool castling(ChessField* source, ChessField* destination);
 
 #endif

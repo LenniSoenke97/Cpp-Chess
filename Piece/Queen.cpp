@@ -1,10 +1,10 @@
 #include"Queen.hpp"
 
-virtual bool Queen::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
+bool override Queen::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
 {
-  if (canMoveDiagonal()) return true;
-  if (canMoveVertical()) return true;
-  if (isHorizontal()) return true;
+  if (canMoveDiagonal(source, destination, board)) return true;
+  if (canMoveVertical(source, destination, board)) return true;
+  if (canMoveHorizontal(source, destination, board)) return true;
 
   return false;
 };

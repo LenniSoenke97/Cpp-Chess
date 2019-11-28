@@ -1,7 +1,7 @@
 #ifndef PAWN
 #define PAWN
 
-#include"Piece.hpp"
+#include"../Piece.hpp"
 #include"../ChessPiece.hpp"
 
 class Pawn : public Piece {
@@ -15,7 +15,7 @@ bool canKillDiagonal(ChessField* source, ChessField* destination);
 
   public:
     Pawn(bool isWhite):Piece::Piece(isWhite) {};
-  virtual bool canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/);
+  bool override canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/);
     
     virtual void hasMoved();
     
