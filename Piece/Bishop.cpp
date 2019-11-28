@@ -1,6 +1,6 @@
-// Bishop.cpp
+#include"Bishop.hpp"
 
-virtual bool Bishop::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
+bool override Bishop::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
 { 
   if (canMoveDiagonal()) return true;
 
