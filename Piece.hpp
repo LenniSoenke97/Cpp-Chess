@@ -1,7 +1,7 @@
 #ifndef PIECE
 #define PIECE
 
-#include"../ChessField.hpp"
+#include"ChessField.hpp"
 
 class Piece {
 protected:

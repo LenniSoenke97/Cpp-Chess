@@ -1,7 +1,7 @@
 #ifndef CHESSFIELD
 #define CHESSFIELD
 
-struct ChessField() {
+struct ChessField {
   Piece* piece;
   int row; // make this constant, should not change
   int col; // make this constant should not change
