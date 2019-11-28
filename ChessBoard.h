@@ -1,6 +1,7 @@
 #ifndef CHESSBOARD
 #define CHESSBOARD
 
+#include<iostream> // delete this
 #include<string>
 #include"ChessField.hpp"
 
@@ -103,3 +104,5 @@ void display_board(ChessField[8][8]) {
   bool canMakeMove(ChessField source_field, ChessField* destination_field);
   
 }
+
+#endif

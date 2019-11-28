@@ -1,6 +1,10 @@
 #include"Piece.hpp"
 #include"../ChessField.hpp"
 
+bool Piece::getHasMoved() {
+  return this->has_moved;
+}
+
   bool Piece::isDiagonal(ChessField* source,
 		  ChessField* destination,
 		  ChessField* board[8][8]) {

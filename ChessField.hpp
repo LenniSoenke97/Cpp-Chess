@@ -1,7 +1,7 @@
 #ifndef CHESSFIELD
 #define CHESSFIELD
 
-#include"Piece.hpp"
+class Piece;
 
 struct ChessField {
   Piece* piece;

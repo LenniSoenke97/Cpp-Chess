@@ -1,13 +1,14 @@
+#include <cstdlib>
 #include"Pawn.hpp"
 
 bool  Pawn::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
 {
 
-    if (canKillDiagonal(source, destination, board)) return true;
+    if (canKillDiagonal(source, destination)) return true;
     int difference_row = abs(source->row - destination->row);
     int difference_col = abs(source->col - destination->col);
-    if (distance_col != 0) return false;
-    // checking if pawn is moving rihgt awy
+    if (difference_col != 0) return false;
+    // checking if pawn is moving right way
     if (difference_row*this->is_white < 0) return false;
   if (!isWithinMaxDistance(source, destination)) return false;
   if (canMoveVertical(source, destination, board)) return true;
@@ -28,8 +29,8 @@ bool Pawn::canKillDiagonal(ChessField* source, ChessField* destination) {
 
     // is there an enemy on the field
     if(destination->piece) {
-        if (destination->piece->isWhite() != this->isWhite()) return true
+      if (destination->piece->is_white != this->is_white) return true;
     }
 
-    return false
+    return false;
 }

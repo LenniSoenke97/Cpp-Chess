@@ -12,7 +12,7 @@ bool  King::canMakeMove(ChessField* source, ChessField* destination, ChessField*
   return false;
 };
 
-bool King::castling(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make thesr to const*/) {
+bool King::castling(ChessField* source, ChessField* destination) {
 
     Piece* dest_piece = destination->piece;
     if (!(Rook*) dest_piece) return false;
