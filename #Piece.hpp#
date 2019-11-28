@@ -11,16 +11,16 @@ protected:
   bool has_moved = false;
   bool max_distance = 8; // get this from constant
 
-  bool canMoveDiagonal(ChessField* source,
+  bool isDiagonal(ChessField* source,
 		  ChessField* destination,
 		  ChessField* board[8][8]);
 
-  bool canMoveHorizontal(ChessField* source,
+  bool isHorizontal(ChessField* source,
 		    ChessField* destination,
 		    ChessField* board[8][8]);
   
 
-   bool canMoveVertical(ChessField* source,
+   bool isVertical(ChessField* source,
 		  ChessField* destination,
 		  ChessField* board[8][8]);
 
