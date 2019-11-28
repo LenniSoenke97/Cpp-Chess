@@ -1,6 +1,6 @@
 #include"Knight.hpp"
 
-bool override Knight::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
+bool  Knight::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
 {
     int difference_row = abs(source->row - destination->row);
     int difference_col = abs(source->col - destination->col);

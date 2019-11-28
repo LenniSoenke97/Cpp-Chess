@@ -1,6 +1,6 @@
 #include"King.hpp"
 
-bool override King::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
+bool  King::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
 {
     // special case for the rook and king switch
   if (!isWithinMaxDistance(source, destination)) return false;

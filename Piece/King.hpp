@@ -10,7 +10,7 @@ class King : public Piece {
     
   public:
     King(bool isWhite):Piece::Piece(isWhite) {};
-    bool override canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/);
+    bool  canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) override;
 
     bool castling(ChessField* source, ChessField* destination);
 
