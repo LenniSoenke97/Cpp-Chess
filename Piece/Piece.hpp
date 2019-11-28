@@ -5,8 +5,10 @@
 
 class Piece {
 protected:
-  bool isWhite;
-  bool hasMoved = false;
+
+  char display = "T"; ///// delete this
+  
+  bool has_moved = false;
   bool max_distance = 8; // get this from constant
 
   bool isDiagonal(ChessField* source,
@@ -23,17 +25,18 @@ protected:
 		  ChessField* board[8][8]);
 
   bool isWithinMaxDistance(ChessField* source,
-			   ChessField* destination);
-
-  
+			   ChessField* destination);  
   
 public:
+  const bool is_white;
+
   Piece(bool isWhite):isWhite(isWhite) {};
 
   // make this function friendly to board????
   // note this function is a "pure virtual function", ie. it is not implemented here, must be implemented by derived classes
   virtual bool canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/);
   
+  virtual void hasMoved();
 }
 
 #endif

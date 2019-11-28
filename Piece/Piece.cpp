@@ -18,8 +18,7 @@
     while(current_row != destination->row && current_col != destination->col) {
       current_field = board[current_row][current_col];
       if(current_field->piece) {
-	fprintf(stderr, "This move is invalid because there is a piece at position %s "
-		"that blocks the piece from %s from moving to %s",
+	fprintf(stderr, "This move is invalid because there is a piece at position " "%s that blocks the piece from %s from moving to %s",
 		current_field->char_position;
 		source->char_postion;
 		destination->char_postion);  
@@ -38,13 +37,14 @@ bool Piece::isHorizontal(ChessField* source,
 		    ChessField* board[8][8]) {
     if (source->col != destination->col) return false;
     
+    ChessField* current_field;
     int row_change = (source->row > destination->row) ? -1 : 1;
     int current_row = source->row+row_change;
     while(current_row != destination->row) {
       current_field = board[current_row][source->col];
       if(current_field->piece) {
-	fprintf(stderr, "This move is invalid because there is a piece at position %s "
-		"that blocks the piece from %s from moving to %s",
+	fprintf(stderr, "This move is invalid because there is a piece at position "
+    "%s that blocks the piece from %s from moving to %s",
 		current_field->char_position;
 		source->char_postion;
 		destination->char_postion);  
@@ -68,8 +68,8 @@ bool Piece::isVertical(ChessField* source,
     while(current_col != destination->col) {
       current_field = board[current_col][source->row];
       if(current_field->piece) {
-	fprintf(stderr, "This move is invalid because there is a piece at position %s "
-		"that blocks the piece from %s from moving to %s",
+	fprintf(stderr, "This move is invalid because there is a piece at position "
+    "%s that blocks the piece from %s from moving to %s",
 		current_field->char_position;
 		source->char_postion;
 		destination->char_postion);  
@@ -88,3 +88,8 @@ bool Piece::isWithinMaxDistance(ChessField* source,
 				      abs(source->col - destination->col));
     return max_distance < source_to_dest_distance;
   }
+
+virtual void Piece::hasMoved() {
+  has_moved = true;
+}
+

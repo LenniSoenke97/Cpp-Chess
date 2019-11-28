@@ -13,6 +13,8 @@ int main() {
 	ChessBoard cb;
 	cout << '\n';
 
+	cb.display_board(); ///// delete this
+
 	cb.submitMove("D7", "D6");
 	cout << '\n';
 
