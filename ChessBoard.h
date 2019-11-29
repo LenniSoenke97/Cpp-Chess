@@ -4,12 +4,13 @@
 #include<iostream> // delete this
 #include<string>
 #include"ChessField.hpp"
+#include"Piece.hpp" // delete
 
 using namespace std;
 
 class ChessBoard {
   
-  Piece* board[8][8]; // insert constants here 
+  ChessField* board[8][8]; // insert constants here 
   bool white_turn;
 
   /*
@@ -28,39 +29,6 @@ class ChessBoard {
   void setUpBoard();
 
 
-/*
-* Helper functions
-*/
-
-  void print_frame(int row) {
-  if (!(row % 3))
-    cout << "  +===========+===========+===========+" << '\n';
-  else
-    cout << "  +---+---+---+---+---+---+---+---+---+" << '\n';
-}
-
-/* internal helper function */
-void print_row(const ChessField data[], int row) {
-  cout << (char) ('A' + row) << " ";
-  for (int i=0; i<8; i++) {
-    cout << ( (i % 3) ? ':' : '|' ) << " ";
-    cout << ( (data[i]->piece) ? data[i]->piece->display : " ") << " ";
-  }
-  cout << "|" << '\n';
-}
-
-/* pre-supplied function to display a Sudoku board */
-void display_board(ChessField[8][8]) {
-  cout << "    ";
-  for (int r=0; r<8; r++) 
-    cout << (char) ('1'+r) << "   ";
-  cout << '\n';
-  for (int r=0; r<8; r++) {
-    print_frame(r);
-    print_row(board[r],r);
-  }
-  print_frame(8);
-}
 
 
 
@@ -71,13 +39,13 @@ void display_board(ChessField[8][8]) {
    * Input:       none
    * Output:      none
    */
-  void init();
+  
 
   /*
    *
    *
    */
-  bool charPositionToIntPosition(char* char_pos, int& int_row_pos, int& int_col_pos);
+  bool charPositionToIntPosition(const char* char_pos, int& int_row_pos, int& int_col_pos);
 
   void killPiece(ChessField* field);
 
@@ -88,6 +56,9 @@ void display_board(ChessField[8][8]) {
  public:
   ChessBoard();
   ~ChessBoard();
+
+  void resetBoard();
+
   
   /*
    * Description: function that takes the source and destination position of
@@ -101,8 +72,53 @@ void display_board(ChessField[8][8]) {
    */
   void submitMove(const char* source, const char* destination);
 
-  bool canMakeMove(ChessField source_field, ChessField* destination_field);
+  bool canMakeMove(ChessField* source_field, ChessField* destination_field); // make this private
   
+
+
+
+
+
+
+
+  /*
+* Helper functions
+*/
+
+  void print_frame(int row) {
+  if (!(row % 3))
+    cout << "  +===========+===========+===========+" << '\n';
+  else
+    cout << "  +---+---+---+---+---+---+---+---+---+" << '\n';
 }
+
+void print_row(ChessField* data[], int row) {
+  cout << (char) ('A' + row) << " ";
+  for (int i=0; i<8; i++) {
+    cout << ( (i % 3) ? ':' : '|' ) << " ";
+    if (data[i]->piece) { }
+    cout << ( (data[i]->piece) ? data[i]->piece->display : ' ') << " ";
+  }
+  cout << "|" << '\n';
+}
+
+void display_board() {
+  cout << "    ";
+  for (int r=0; r<8; r++) 
+    cout << (char) ('1'+r) << "   ";
+  cout << '\n';
+  for (int r=0; r<8; r++) {
+    print_frame(r);
+    print_row(board[r],r);
+  }
+  print_frame(8);
+}
+
+
+
+
+
+
+};
 
 #endif

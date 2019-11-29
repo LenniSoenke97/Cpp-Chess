@@ -10,7 +10,7 @@ protected:
     bool max_distance = 2;
 
 private:
-    
+  char display() override { return 'P'; };
 bool canKillDiagonal(ChessField* source, ChessField* destination);
 
   public:
