@@ -14,7 +14,7 @@ class ChessBoard {
   bool white_turn;
 
   /*
-   * Description: moves through board and removes all pieces
+   * Description: iterates through board and removes all pieces
    * Input:       none
    * Output:      none
    */

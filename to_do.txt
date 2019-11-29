@@ -1,0 +1,10 @@
+- check if stalemate works
+- comment all functions
+- check all files and remove superfluous code 
+- put on error_handling (but not when checking for check or for stalemate)
+- have a function that determines whether checkmate
+- find an elegant solution to "max_distance"
+- remove display_board and the display attribute
+- remove all .o files and other files
+- make sure all lines break after 80 characters
+- reindent
