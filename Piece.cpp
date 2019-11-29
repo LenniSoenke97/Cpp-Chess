@@ -25,7 +25,7 @@ bool Piece::getHasMoved() {
     while(current_row != destination->row && current_col != destination->col) {
       current_field = board[current_row][current_col];
       if(current_field->piece) {
-	fprintf(stderr, "This move is invalid because there is a piece at position " "%s that blocks the piece from %s from moving to %s",
+	//fprintf(stderr, "This move is invalid because there is a piece at position " "%s that blocks the piece from %s from moving to %s",
 		current_field->char_position,
 		source->char_position,
 		destination->char_position);  
@@ -50,7 +50,7 @@ bool Piece::canMoveVertical(ChessField* source,
     while(current_row != destination->row) {
       current_field = board[current_row][source->col];
       if(current_field->piece) {
-	fprintf(stderr, "This move is invalid because there is a piece at position "
+	//fprintf(stderr, "This move is invalid because there is a piece at position "
     "%s that blocks the piece from %s from moving to %s",
 		current_field->char_position,
 		source->char_position,
@@ -76,7 +76,7 @@ bool Piece::canMoveHorizontal(ChessField* source,
     while(current_col != destination->col) {
       current_field = board[current_col][source->row];
       if(current_field->piece) {
-	fprintf(stderr, "This move is invalid because there is a piece at position "
+	//fprintf(stderr, "This move is invalid because there is a piece at position "
     "%s that blocks the piece from %s from moving to %s",
 		current_field->char_position,
 		source->char_position,

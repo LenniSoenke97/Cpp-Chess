@@ -64,7 +64,7 @@ void ChessBoard::resetBoard() {
     int_row_pos = (int)char_row_pos - (int)'1';
     int_col_pos = (int)char_col_pos - (int)'A';
     if (int_col_pos < 0 || int_row_pos < 0 || int_col_pos >= 8 || int_col_pos >= 8) { // make these values into constants
-      fprintf(stderr, "The following position %s is invalid.", char_pos);
+      //fprintf(stderr, "The following position %s is invalid.", char_pos);
       return false;
     }
     return true;
@@ -188,20 +188,20 @@ ChessBoard::ChessBoard() { setUpBoard(); }
     
     // check if the  move actually moves a piece
     if (source_field == destination_field) {
-      fprintf(stderr, "You must move a piece, it cannot stay on same field");
+      //fprintf(stderr, "You must move a piece, it cannot stay on same field");
       return false;
     }
 
     // check whether there is a piece on the board in the source position
     if (!source_field->piece) {
-      fprintf(stderr, "There is no chess piece on the field you have selected "
+      //fprintf(stderr, "There is no chess piece on the field you have selected "
           "(%s). Thus the move is invalid", source_field->char_position);
       return false;
     }
 
     // check whether source piece belongs to player
     if((int)white_turn != source_field->piece->is_white) {
-      fprintf(stderr, "%s is allowed to move. The piece in position %s is %s"
+      //fprintf(stderr, "%s is allowed to move. The piece in position %s is %s"
           " .Thus the move is invalid.",
           (white_turn ? "White" : "Black"),
           source_field->char_position,
@@ -218,7 +218,7 @@ ChessBoard::ChessBoard() { setUpBoard(); }
     // check if friendly figurine on the destination field
     if(source_field->piece && destination_field->piece) {
       if (source_field->piece->is_white == source_field->piece->is_white) {
-    fprintf(stderr, "There is a piece of the same colour on destination field %s "
+    //fprintf(stderr, "There is a piece of the same colour on destination field %s "
         ".Thus the move is invalid.", destination_field->char_position);
     return false;
       }
@@ -237,7 +237,7 @@ ChessBoard::ChessBoard() { setUpBoard(); }
     // check if king in check after move
     bool return_value = true;
     if(kingInCheck(source_field, destination_field)) {
-      fprintf(stderr, "This move cannot be done since your king will be in check after the move");
+      //fprintf(stderr, "This move cannot be done since your king will be in check after the move");
       return_value = false;
     };
 
