@@ -1,8 +1,8 @@
 #ifndef PAWN
 #define PAWN
 
-#include"../Piece.hpp"
-#include"../ChessField.hpp"
+#include"Piece.hpp"
+#include"ChessField.hpp"
 
 class Pawn : public Piece {
 

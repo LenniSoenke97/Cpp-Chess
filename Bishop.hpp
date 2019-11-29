@@ -1,8 +1,8 @@
 #ifndef BISHOP
 #define BISHOP
 
-#include"../Piece.hpp"
-#include"../ChessField.hpp"
+#include"Piece.hpp"
+#include"ChessField.hpp"
 
 class Bishop : public Piece {
 

@@ -1,8 +1,8 @@
 #ifndef ROOK
 #define ROOK
 
-#include"../Piece.hpp"
-#include"../ChessField.hpp"
+#include"Piece.hpp"
+#include"ChessField.hpp"
 
 class Rook : public Piece {
   

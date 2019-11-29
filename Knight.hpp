@@ -1,8 +1,8 @@
 #ifndef KNIGHT
 #define KNIGHT
 
-#include"../Piece.hpp"
-#include"../ChessField.hpp"
+#include"Piece.hpp"
+#include"ChessField.hpp"
 
 class Knight : public Piece {
 

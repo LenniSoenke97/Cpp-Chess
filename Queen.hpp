@@ -1,8 +1,8 @@
 #ifndef QUEEN
 #define QUEEN
 
-#include"../Piece.hpp"
-#include"../ChessField.hpp"
+#include"Piece.hpp"
+#include"ChessField.hpp"
 
 class Queen : public Piece {
 
