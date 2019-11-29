@@ -1,9 +1,18 @@
-- check if stalemate works
+// Now
 - comment all functions
 - check all files and remove superfluous code 
-- put on error_handling (but not when checking for check or for stalemate)
 - have a function that determines whether checkmate
-- find an elegant solution to "max_distance"
+
+// Global changes stage
+- find an elegant solution to "max_distance" (max)
+- find better solution for stalemate (max)
+- make text output similar to what is seen in labts test
+- put on error_handling (but not when checking for check or for
+stalemate) (max)
+- add a clean call in makefile that removes all .o and all .gch files
+- make max check makefile
+
+// Submission stage
 - remove display_board and the display attribute
 - remove all .o files and other files
 - make sure all lines break after 80 characters

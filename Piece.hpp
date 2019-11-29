@@ -4,6 +4,9 @@
 #include"ChessField.hpp"
 
 
+//const int CHESSBOARD_ROWS = 8;
+//const int CHESSBOARD_COLS = 8;
+
 class Piece {
 protected:
 

@@ -6,10 +6,6 @@
 #include"King.hpp"
 #include"Pawn.hpp"
 
-using namespace std;
-
-const int CHESSBOARD_ROWS = 8;
-const int CHESSBOARD_COLS = 8;
 
 void ChessBoard::clearBoard() {
   for (int row = 0; row < 8 /* make this into constant*/; row++) {
@@ -182,7 +178,7 @@ ChessBoard::ChessBoard() { setUpBoard(); }
     destination_field->piece->hasMoved();
     white_turn = !white_turn;
 
-    // display_board(); // delete
+    display_board(); // delete
     
     checkStaleMate();
     

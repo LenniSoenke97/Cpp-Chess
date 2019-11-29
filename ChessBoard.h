@@ -1,12 +1,14 @@
 #ifndef CHESSBOARD
 #define CHESSBOARD
 
-#include<iostream> // delete this
-#include<string>
-#include"ChessField.hpp"
+#include<iostream> // delete
 #include"Piece.hpp" // delete
 
-using namespace std;
+#include<string>
+#include"ChessField.hpp"
+
+using namespace std; // delete
+
 
 class ChessBoard {
   
