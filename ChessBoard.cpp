@@ -179,7 +179,7 @@ ChessBoard::ChessBoard() { setUpBoard(); }
     destination_field->piece->hasMoved();
     white_turn = !white_turn;
 
-    display_board(); // delete
+    // display_board(); // delete
     
     checkStaleMate();
     
