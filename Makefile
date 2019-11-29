@@ -20,4 +20,4 @@ ChessField.o: ChessField.cpp ChessField.hpp Piece.hpp
 	$(cc) $< -c
 
 %.o: %.cpp %.hpp Piece.hpp
-	$(cc) $(word 2,$^) -c
+	$(cc) $< -c

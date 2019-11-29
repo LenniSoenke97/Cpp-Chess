@@ -1,10 +1,10 @@
 #include"ChessBoard.h"
-#include"Piece/Rook.hpp"
-#include"Piece/Knight.hpp"
-#include"Piece/Bishop.hpp"
-#include"Piece/Queen.hpp"
-#include"Piece/King.hpp"
-#include"Piece/Pawn.hpp"
+#include"Rook.hpp"
+#include"Knight.hpp"
+#include"Bishop.hpp"
+#include"Queen.hpp"
+#include"King.hpp"
+#include"Pawn.hpp"
 
 using namespace std;
 
@@ -100,7 +100,7 @@ void ChessBoard::resetBoard() {
     }
 
     for (int enemy = 0; enemy<number_of_enemies; enemy++) {
-      if(!enemy_fields[enemy]->piece
+      if(enemy_fields[enemy]->piece
      ->canMakeMove(enemy_fields[enemy], king_field, board)) return true;
     }
 
@@ -114,7 +114,7 @@ bool  ChessBoard::checkStaleMate() {
     ChessField* field;
     
     for (int row=0; row < 8 /* const*/; row++) {
-      for (int col=0; col , 8 /* const*/; col++) {
+      for (int col=0; col < 8 /* const*/; col++) {
     field = board[row][col];
     if (!field->piece) continue;
     if (field->piece->is_white == white_turn) {
@@ -128,7 +128,7 @@ bool  ChessBoard::checkStaleMate() {
     
     for(int current_field=0; current_field < number_of_fields; current_field++) {
       for (int row=0; row < 8 /* const*/; row++) {
-    for (int col=0; col , 8 /* const*/; col++) {
+    for (int col=0; col < 8 /* const*/; col++) {
       field = board[row][col];
       if (canMakeMove(friendly_fields[current_field], field)) return false;
     }
@@ -210,7 +210,6 @@ ChessBoard::ChessBoard() { setUpBoard(); }
     }
 
     // check if move is allowed by the rules of the piece
-    bool test = !source_field->piece->canMakeMove(source_field, destination_field, board);
     if(!source_field->piece->canMakeMove(source_field, destination_field, board)) {
       return false;
     }

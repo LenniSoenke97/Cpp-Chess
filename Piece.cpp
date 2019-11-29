@@ -39,7 +39,7 @@ bool Piece::getHasMoved() {
     return true;
   };
 
-bool Piece::canMoveHorizontal(ChessField* source,
+bool Piece::canMoveVertical(ChessField* source,
 		    ChessField* destination,
 		    ChessField* board[8][8]) {
     if (source->col != destination->col) return false;
@@ -65,7 +65,7 @@ bool Piece::canMoveHorizontal(ChessField* source,
     
   };
 
-bool Piece::canMoveVertical(ChessField* source,
+bool Piece::canMoveHorizontal(ChessField* source,
 		  ChessField* destination,
 		  ChessField* board[8][8]) {
     if (source->row != destination->row) return false;
@@ -95,7 +95,7 @@ bool Piece::isWithinMaxDistance(ChessField* source,
   int row_distance = abs(source->row - destination->row);
   int col_distance = abs(source->col - destination->col); 
   int source_to_dest_distance = (row_distance < col_distance) ? col_distance : row_distance;
-    return max_distance < source_to_dest_distance;
+    return max_distance <= source_to_dest_distance;
   }
 
 void Piece::hasMoved() {
