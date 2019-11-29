@@ -3,6 +3,7 @@
 
 #include"ChessField.hpp"
 
+
 class Piece {
 protected:
 
@@ -37,7 +38,7 @@ public:
   // make this function friendly to board????
   // note this function is a "pure virtual function", ie. it is not implemented here, must be implemented by derived classes
   virtual bool canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) = 0;
-  
+    
   virtual void hasMoved();
   virtual bool getHasMoved();
 

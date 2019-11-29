@@ -2,6 +2,8 @@ cc=g++ -Wall -Wextra -g
 pieces=Piece/Bishop.o Piece/Rook.o Piece/King.o Piece/Queen.o Piece/Knight.o Piece/Pawn.o
 other=ChessBoard.o Piece.o ChessField.o ChessMain.o
 
+
+
 chess: $(pieces) $(other)
 	$(cc) $^ -o chess
 
@@ -17,5 +19,5 @@ Piece.o: Piece.cpp Piece.hpp ChessField.hpp $(pieces)
 ChessField.o: ChessField.cpp ChessField.hpp Piece.hpp
 	$(cc) $< -c
 
-Piece/%.o: Piece/%.hpp Piece/%.cpp ChessField.hpp Piece.hpp
-	$(cc) $< -c
+Piece/%.o: Piece/%.cpp Piece/%.hpp
+	$(cc) $(word 2,$^) -c

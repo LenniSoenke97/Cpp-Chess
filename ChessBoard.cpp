@@ -18,7 +18,7 @@ void ChessBoard::clearBoard() {
   };
 
 void ChessBoard::setUpBoard() {
-    bool isWhite = true;
+    bool isWhite = false;
     board[0][0] = new ChessField(0, 0, new Rook(isWhite));
     board[0][1] = new ChessField(0, 1, new Knight(isWhite));
     board[0][2] = new ChessField(0, 2, new Bishop(isWhite));
@@ -37,7 +37,7 @@ void ChessBoard::setUpBoard() {
       }
     }
 
-    isWhite = false;
+    isWhite = true;
     board[7][0] = new ChessField(7, 0, new Rook(isWhite));
     board[7][1] = new ChessField(7, 1, new Knight(isWhite));
     board[7][2] = new ChessField(7, 2, new Bishop(isWhite));
@@ -62,7 +62,7 @@ void ChessBoard::resetBoard() {
     char char_col_pos = char_pos[0];
     char char_row_pos = char_pos[1];
     int_row_pos = (int)char_row_pos - (int)'1';
-    int_col_pos = (int)int_col_pos - (int)'A';
+    int_col_pos = (int)char_col_pos - (int)'A';
     if (int_col_pos < 0 || int_row_pos < 0 || int_col_pos >= 8 || int_col_pos >= 8) { // make these values into constants
       fprintf(stderr, "The following position %s is invalid.", char_pos);
       return false;
@@ -85,7 +85,7 @@ void ChessBoard::resetBoard() {
     ChessField* field;
     ChessField* enemy_fields[16]; // make this constant
     for (int row=0; row < 8 /* const*/; row++) {
-      for (int col=0; col , 8 /* const*/; col++) {
+      for (int col=0; col < 8 /* const*/; col++) {
     field = board[row][col];
     if (!field->piece) continue;
     if (field->piece->is_white == white_turn) {
@@ -178,6 +178,8 @@ ChessBoard::ChessBoard() { setUpBoard(); }
     destination_field->piece->hasMoved();
     white_turn = !white_turn;
 
+    display_board(); // delete
+    
     checkStaleMate();
     
   }
@@ -208,6 +210,7 @@ ChessBoard::ChessBoard() { setUpBoard(); }
     }
 
     // check if move is allowed by the rules of the piece
+    bool test = !source_field->piece->canMakeMove(source_field, destination_field, board);
     if(!source_field->piece->canMakeMove(source_field, destination_field, board)) {
       return false;
     }

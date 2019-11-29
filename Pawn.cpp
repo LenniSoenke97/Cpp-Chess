@@ -1,8 +1,11 @@
 #include <cstdlib>
 #include"Pawn.hpp"
+#include<iostream> // delete
 
-bool  Pawn::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
+bool Pawn::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/)
 {
+
+  exit(2);
 
     if (canKillDiagonal(source, destination)) return true;
     int difference_row = abs(source->row - destination->row);

@@ -17,7 +17,7 @@ bool canKillDiagonal(ChessField* source, ChessField* destination);
     Pawn(bool isWhite):Piece::Piece(isWhite) {
         display = 'P'; //delete this
     };
-  bool  canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) override;
+  bool canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) /*override*/;
     
     void hasMoved() override;
 
