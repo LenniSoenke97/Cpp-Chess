@@ -10,9 +10,10 @@ class Queen : public Piece {
     
   public:
 
-  char display() override { return 'Q'; };
   
-    Queen(bool isWhite):Piece::Piece(isWhite) {};
+    Queen(bool isWhite):Piece::Piece(isWhite) {
+        display = 'Q'; //delete this
+    };
   bool  canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) override;
         
 };

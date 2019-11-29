@@ -10,9 +10,9 @@ class Rook : public Piece {
     
   public:
 
-  char display() override { return 'R'; };
-
-  Rook(bool isWhite):Piece::Piece(isWhite) {};
+  Rook(bool isWhite):Piece::Piece(isWhite) { 
+    display = 'R'; //delete this
+  };
   bool  canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) override;
         
 };

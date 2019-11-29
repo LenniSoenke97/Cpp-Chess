@@ -9,8 +9,10 @@ class Knight : public Piece {
     bool max_distance = 1;
     
   public:
-  char display() override { return 'k'; };
-    Knight(bool isWhite):Piece::Piece(isWhite) {};
+
+    Knight(bool isWhite):Piece::Piece(isWhite) {
+        display = 'k'; //delete this
+    };
   bool  canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) override;
         
 
