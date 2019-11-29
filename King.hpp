@@ -6,12 +6,12 @@
 
 class King : public Piece {
 
-    bool max_distance = 1;
     
   public:
 
 
     King(bool isWhite):Piece::Piece(isWhite) {
+      max_distance = 1;
         display = 'K'; //delete this
     };
     bool  canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) override;

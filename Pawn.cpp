@@ -11,8 +11,11 @@ bool Pawn::canMakeMove(ChessField* source, ChessField* destination, ChessField* 
     if (difference_col != 0) return false;
     // checking if pawn is moving right way
     if (difference_row*this->is_white < 0) return false;
+    if (destination->piece) return false; // cannot kill forward
   if (!isWithinMaxDistance(source, destination)) return false;
   if (canMoveVertical(source, destination, board)) return true;
+
+  // ALSO MAKE SURE THERE ARE NOT FIGURINES ON THE DESTINATION (FORWARD FIELD) SINCE THE PAWN CANNOT KILL F0RWARDS
 
   return false;
 };

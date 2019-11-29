@@ -18,7 +18,7 @@ void ChessBoard::clearBoard() {
   };
 
 void ChessBoard::setUpBoard() {
-    bool isWhite = false;
+    bool isWhite = true;
     board[0][0] = new ChessField(0, 0, new Rook(isWhite));
     board[0][1] = new ChessField(0, 1, new Knight(isWhite));
     board[0][2] = new ChessField(0, 2, new Bishop(isWhite));
@@ -37,7 +37,7 @@ void ChessBoard::setUpBoard() {
       }
     }
 
-    isWhite = true;
+    isWhite = false;
     board[7][0] = new ChessField(7, 0, new Rook(isWhite));
     board[7][1] = new ChessField(7, 1, new Knight(isWhite));
     board[7][2] = new ChessField(7, 2, new Bishop(isWhite));
@@ -101,7 +101,8 @@ void ChessBoard::resetBoard() {
 
     for (int enemy = 0; enemy<number_of_enemies; enemy++) {
       if(enemy_fields[enemy]->piece
-     ->canMakeMove(enemy_fields[enemy], king_field, board)) return true;
+	 ->canMakeMove(enemy_fields[enemy], king_field, board)) return true;
+      
     }
 
       
@@ -188,20 +189,20 @@ ChessBoard::ChessBoard() { setUpBoard(); }
     
     // check if the  move actually moves a piece
     if (source_field == destination_field) {
-      //fprintf(stderr, "You must move a piece, it cannot stay on same field");
+      /*fprintf(stderr, "You must move a piece, it cannot stay on same field");*/
       return false;
     }
 
     // check whether there is a piece on the board in the source position
     if (!source_field->piece) {
-      //fprintf(stderr, "There is no chess piece on the field you have selected "
-          "(%s). Thus the move is invalid", source_field->char_position);
+      /*fprintf(stderr, "There is no chess piece on the field you have selected "
+      "(%s). Thus the move is invalid", source_field->char_position);*/
       return false;
     }
 
     // check whether source piece belongs to player
     if((int)white_turn != source_field->piece->is_white) {
-      //fprintf(stderr, "%s is allowed to move. The piece in position %s is %s"
+      fprintf(stderr, "%s is allowed to move. The piece in position %s is %s"
           " .Thus the move is invalid.",
           (white_turn ? "White" : "Black"),
           source_field->char_position,
@@ -214,19 +215,25 @@ ChessBoard::ChessBoard() { setUpBoard(); }
       return false;
     }
 
-   
+
+    ///
+    ///
+    /// combine the next two if statements when cleaning up
+    ///
+    //
+    
     // check if friendly figurine on the destination field
     if(source_field->piece && destination_field->piece) {
-      if (source_field->piece->is_white == source_field->piece->is_white) {
-    //fprintf(stderr, "There is a piece of the same colour on destination field %s "
-        ".Thus the move is invalid.", destination_field->char_position);
+      if (source_field->piece->is_white == destination_field->piece->is_white) {
+	/*fprintf(stderr, "There is a piece of the same colour on destination field %s "
+	  ".Thus the move is invalid.", destination_field->char_position);*/
     return false;
       }
     }
 
     Piece* dead_piece = nullptr;
     if(source_field->piece && destination_field->piece) {
-      if (source_field->piece->is_white != source_field->piece->is_white) {
+      if (source_field->piece->is_white != destination_field->piece->is_white) {
     dead_piece = destination_field->piece;
       }
     }

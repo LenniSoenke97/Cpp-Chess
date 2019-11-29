@@ -77,5 +77,7 @@ int main() {
 	cb.submitMove("D3", "G6");
 	cout << '\n';
 
+	cb.display_board();
+
 	return 0;
 }
