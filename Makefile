@@ -21,3 +21,6 @@ ChessField.o: ChessField.cpp ChessField.hpp Piece.hpp
 
 %.o: %.cpp %.hpp Piece.hpp
 	$(cc) $< -c
+
+clean:
+	rm -f *.o *.gch chess

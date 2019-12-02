@@ -3,12 +3,23 @@
 
 class Piece;
 
-struct ChessField {
+struct ChessField
+{
+  const int row;
+  const int col;
   Piece* piece;
-  int row; // make this constant, should not change
-  int col; // make this constant should not change
   char char_position[2];
- ChessField(int row, int col, Piece* piece = nullptr);
+
+  /*
+   * ChessField constructor
+   * Description: sets the row, column and initial piece on the
+   *              chess field, as well as the char_position.
+   * Input:       int row: the row index of the field
+   *              int col: the col index of the field
+   *              Piece* piece: the initial piece on the field
+   *              (nullptr, ie. empty field, by default)
+   */
+  ChessField(int row, int col, Piece* piece = nullptr);
 };
 
 #endif

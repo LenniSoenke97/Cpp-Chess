@@ -7,45 +7,140 @@
 //const int CHESSBOARD_ROWS = 8;
 //const int CHESSBOARD_COLS = 8;
 
-class Piece {
+class Piece
+{
+  
 protected:
 
   bool has_moved = false;
-  bool max_distance = 8; // get this from constant
 
+  /*
+   * Description: checks whether the source and destination fields
+   *              are diagonal to each other and that there is
+   *              no other figure between source and destination
+   *              field
+   * Input:       ChessField* source: the field you want to move a
+   *              figure from
+   *              ChessField* destination: the field you want to
+   *              move the figure to
+   *              ChessField* board[][]: the board the current game
+   *              is being played on.
+   * Output:      True if the destination field is diagonal from the
+   *              source field and no figure is on the diagonal path
+   *              between the two fields
+   *              False otherwise
+   */
   bool canMoveDiagonal(ChessField* source,
-		  ChessField* destination,
-		  ChessField* board[8][8]);
+		       ChessField* destination,
+		       ChessField* board[8][8]) const;
 
+  /*
+   * Description: checks whether the source and destination fields
+   *              are horizontal to each other and that there is
+   *              no other figure between source and destination
+   *              field
+   * Input:       ChessField* source: the field you want to move a
+   *              figure from
+   *              ChessField* destination: the field you want to
+   *              move the figure to
+   *              ChessField* board[][]: the board the current game
+   *              is being played on.
+   * Output:      True if the destination field is horizontal from the
+   *              source field and no figure is on the diagonal path
+   *              between the two fields
+   *              False otherwise
+   */
   bool canMoveHorizontal(ChessField* source,
-		    ChessField* destination,
-		    ChessField* board[8][8]);
+			 ChessField* destination,
+			 ChessField* board[8][8]) const;
   
 
-   bool canMoveVertical(ChessField* source,
-		  ChessField* destination,
-		  ChessField* board[8][8]);
+  /*
+   * Description: checks whether the source and destination fields
+   *              are vertical to each other and that there is
+   *              no other figure between source and destination
+   *              field
+   * Input:       ChessField* source: the field you want to move a
+   *              figure from
+   *              ChessField* destination: the field you want to
+   *              move the figure to
+   *              ChessField* board[][]: the board the current game
+   *              is being played on.
+   * Output:      True if the destination field is vertical from the
+   *              source field and no figure is on the diagonal path
+   *              between the two fields
+   *              False otherwise
+   */
+  bool canMoveVertical(ChessField* source,
+		       ChessField* destination,
+		       ChessField* board[8][8]) const;
 
+  /*
+   * Description: checks whether the destination field is within the
+   *              maximum allowed movable distance of the piece on the
+   *              source field. Distance is defined as the maximum of
+   *              row distance and column distance between source and
+   *              destination. 
+   * Input:       ChessField* source: the field you want to move a
+   *              figure from
+   *              ChessField* destination: the field you want to
+   *              move the figure to
+   *              int max_distance: the maximum distance the piece can move.
+   * Output:      True if the destination field is within the maximum
+   *              distance of the chess piece of the source field
+   *              False otherwise
+   */
   bool isWithinMaxDistance(ChessField* source,
-			   ChessField* destination);  
+			   ChessField* destination,
+			   int max_distance) const;  
   
 public:
 
   char display = 'T'; ///// delete this
 
-  
   const bool is_white;
 
-  Piece(bool is_white):is_white(is_white) {};
+  /* Piece constructor
+   * Description: sets the is_white attribute
+   * Input:       bool is_white: boolean indicating whether the piece is white
+   *              or not.
+   */
+  Piece(bool is_white) : is_white(is_white) {};
 
-  // make this function friendly to board????
-  // note this function is a "pure virtual function", ie. it is not implemented here, must be implemented by derived classes
-  virtual bool canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) = 0;
-    
+  /*
+   * Description: canMakeMove determines whether it is within the rules of the game
+   *              for a figure to make a move from the source field to the destination 
+   *              field. The function only checks whether the destination field is within
+   *              range and the path to the destination is one the piece on the source field
+   *              can take and no pieces are in the way. It does not check anything else.
+   *              Thos os a pure virtual function and must be implemented by derrived classes.
+   * Input:       ChessField* source: the field you want to move a
+   *              figure from
+   *              ChessField* destination: the field you want to
+   *              move the figure to
+   *              ChessField* board[][]: the board the current game
+   *              is being played on.
+   * Output:      True if the destination field is within range and the path to the destination
+   *              is allowed for the piece on the source field.
+   *              False otherwise
+   */
+  virtual bool canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) const = 0;
+
+  /*
+   * Description: sets the has_moved attribute to 1
+   * Input:       none
+   * Output:      void
+   */
   virtual void hasMoved();
-  virtual bool getHasMoved();
 
-  ~Piece() {};
+  /*
+   * Description: accessor for the has_moved property
+   * Input:       none
+   * Output:      the has_moved value (boolean)
+   */
+  virtual bool getHasMoved() const;
+
+  virtual ~Piece() {};
 };
 
 #endif
