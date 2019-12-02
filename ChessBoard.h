@@ -122,7 +122,7 @@ class ChessBoard
     for (int i=0; i<8; i++) {
       cout << ( (i % 3) ? ':' : '|' ) << " ";
       if (data[i]->piece) { }
-      cout << ( (data[i]->piece) ? data[i]->piece->display : ' ') << " ";
+      //cout << ( (data[i]->piece) ? data[i]->piece->display : ' ') << " ";
     }
     cout << "|" << '\n';
   }

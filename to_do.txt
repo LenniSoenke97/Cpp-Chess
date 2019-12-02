@@ -5,6 +5,12 @@
 **- order functions in .cpp and .hpp files in same order
 **- check that checkmate
 **- add a clean call in makefile that removes all .o and all .gch files
+**- make sure all funcitns have "override"
+**- fix compilation errors
+
+
+- make text output similar to what is seen in labts test
+
 
 - WHEN AT HOME: change all arguments in canMove functions (and other
 functions like the killDiagonal) to const references -
@@ -17,14 +23,11 @@ https://co517.pages.doc.ic.ac.uk/decks/MSc/StructuringData.pdf (page 32)
 - implement destructors
 - comment constructor and destructors
 - implement castling
-- fix compilation errors
-- make sure all funcitns have "override"
 - make the right attributes and parameters const
 
 // Global changes stage
 - find an elegant solution to "max_distance" (max)
 - find better solution for stalemate (max)
-- make text output similar to what is seen in labts test
 - put on error_handling (but not when checking for check or for
 stalemate) (max)
 - make max check makefile (max)

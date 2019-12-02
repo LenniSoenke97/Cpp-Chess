@@ -17,7 +17,7 @@ public:
    */
   Bishop(bool isWhite):Piece::Piece(isWhite)
   {
-    display = 'B'; //delete this
+    display = "Bishop"; //delete this
   };
 
   /*

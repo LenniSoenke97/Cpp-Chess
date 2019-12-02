@@ -32,7 +32,7 @@ public:
    */
   Pawn(bool isWhite):Piece::Piece(isWhite)
   {
-    display = 'P'; //delete this
+    display = "Pawn"; //delete this
   };
 
   /*

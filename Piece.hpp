@@ -2,7 +2,9 @@
 #define PIECE
 
 #include"ChessField.hpp"
+#include<string>
 
+using namespace std;
 
 //const int CHESSBOARD_ROWS = 8;
 //const int CHESSBOARD_COLS = 8;
@@ -96,7 +98,7 @@ protected:
   
 public:
 
-  char display = 'T'; ///// delete this
+  string display; ///// delete this
 
   const bool is_white;
 

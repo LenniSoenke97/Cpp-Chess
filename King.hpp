@@ -20,7 +20,7 @@ public:
    */
   King(bool isWhite):Piece::Piece(isWhite)
   {
-    display = 'K'; //delete this
+    display = "King"; //delete this
   };
 
   /*

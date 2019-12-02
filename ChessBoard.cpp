@@ -189,6 +189,7 @@ void ChessBoard::resetBoard()
 {
   clearBoard();
   setupBoard();
+  printf("A new chess game is started!\n");
 }
 
 void ChessBoard::submitMove(const char* source, const char* destination)
@@ -212,19 +213,38 @@ void ChessBoard::submitMove(const char* source, const char* destination)
   destination_field->piece = source_field->piece;
   source_field->piece = nullptr;
 
+  printf("%s's %s moves from %s to %s ",
+	 (white_turn ? "White" : "Black"),
+	 source_field->piece->display.c_str(),
+	 source,
+	 destination
+	 );
+
   if (dead_piece) {
+    printf("taking %s's %s \n",
+	   (white_turn ? "Black" : "White"),
+	   dead_piece->display.c_str());
     delete dead_piece;
+  } else {
+    printf("\n");
   }
   
   destination_field->piece->hasMoved();
   white_turn = !white_turn;
 
-  display_board(); // delete
-    
-  if (noMovesPossible()) {
-    if (kingInCheck()) {
-      printf("Game over - %s wins \n", (white_turn) ? "Black" : "White");
-    } else {
+  
+  //display_board(); // delete
+  bool king_in_check = kingInCheck();
+  bool no_moves_possible = noMovesPossible();
+
+  if (king_in_check) {
+    printf("%s is in check%s",
+	   (white_turn ? "White" : "Black"),
+	   (no_moves_possible ? "mate" : "")
+	   );
+  }
+  else {
+    if (no_moves_possible) {
       printf("Game over - stalemate \n");
     }
   }

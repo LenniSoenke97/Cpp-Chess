@@ -17,7 +17,7 @@ public:
    */
   Knight(bool isWhite):Piece::Piece(isWhite)
   {
-    display = 'k'; //delete this
+    display = "Knight"; //delete this
   };
 
   /*

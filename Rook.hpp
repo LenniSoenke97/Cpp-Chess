@@ -17,7 +17,7 @@ public:
    */
   Rook(bool isWhite):Piece::Piece(isWhite)
   { 
-    display = 'R'; //delete this
+    display = "Rook"; //delete this
   };
 
   /*

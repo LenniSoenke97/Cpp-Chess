@@ -17,7 +17,7 @@ public:
    */
   Queen(bool isWhite):Piece::Piece(isWhite)
   {
-    display = 'Q'; //delete this
+    display = "Queen"; //delete this
   };
 
   /*
