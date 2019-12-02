@@ -3,11 +3,10 @@
 
 #include"ChessField.hpp"
 #include<string>
-
-using namespace std;
-
 //const int CHESSBOARD_ROWS = 8;
 //const int CHESSBOARD_COLS = 8;
+
+using namespace std;
 
 class Piece
 {
@@ -98,8 +97,6 @@ protected:
   
 public:
 
-  string display; ///// delete this
-
   const bool is_white;
 
   /* Piece constructor
@@ -143,6 +140,9 @@ public:
   virtual bool getHasMoved() const;
 
   virtual ~Piece() {};
+
+  virtual char* display() const = 0;
+
 };
 
 #endif

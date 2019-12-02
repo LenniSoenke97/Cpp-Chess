@@ -6,7 +6,6 @@
 #include"King.hpp"
 #include"Pawn.hpp"
 
-
 void ChessBoard::clearBoard()
 {
   for (int row = 0; row < 8 /* make this into constant*/; row++) {
@@ -213,9 +212,9 @@ void ChessBoard::submitMove(const char* source, const char* destination)
   destination_field->piece = source_field->piece;
   source_field->piece = nullptr;
 
-  printf("%s's %s moves from %s to %s ",
+  printf("%s's %s moves from %s to %s \n",
 	 (white_turn ? "White" : "Black"),
-	 source_field->piece->display.c_str(),
+	 source_field->piece->displayFunc(),
 	 source,
 	 destination
 	 );
@@ -223,7 +222,7 @@ void ChessBoard::submitMove(const char* source, const char* destination)
   if (dead_piece) {
     printf("taking %s's %s \n",
 	   (white_turn ? "Black" : "White"),
-	   dead_piece->display.c_str());
+	   dead_piece->display);
     delete dead_piece;
   } else {
     printf("\n");
