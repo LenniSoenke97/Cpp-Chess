@@ -144,18 +144,13 @@ bool ChessBoard::canMakeMove(ChessField* source_field,
   if(!isPlayer(source_field)) return false;
   if(!isMovement(source_field, destination_field)) return false;
   
-  bool movement_error = false;
   if(!source_field->piece->canMakeMove(source_field, 
 				       destination_field, 
-				       board)) movement_error = true;
-  if(destinationFieldIsFriendly(source_field, destination_field)) 
-    movement_error = true;
-  if(inCheckAfterMove(source_field, destination_field)) 
-    movement_error = true;
+				       board)) return false;
+  if(destinationFieldIsFriendly(source_field, destination_field)) return false;
+  if(inCheckAfterMove(source_field, destination_field)) return false;
 
-  if (movement_error) printMovementError(source_field, destination_field);
-
-  return !movement_error;  
+  return true;  
 }
 
 bool ChessBoard::inCheckAfterMove(ChessField* source_field, 
@@ -374,6 +369,7 @@ void ChessBoard::submitMove(const char* source, const char* destination)
   if(isCastling(source_field, destination_field)) return;
   
   if(!canMakeMove(source_field, destination_field)) {
+    printMovementError(source_field, destination_field);
     return;
   }
   
