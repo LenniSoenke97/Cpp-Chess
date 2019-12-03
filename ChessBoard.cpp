@@ -155,7 +155,7 @@ bool ChessBoard::canMakeMove(ChessField* source_field,
 
   if (movement_error) printMovementError(source_field, destination_field);
 
-  return movement_error;  
+  return !movement_error;  
 }
 
 bool ChessBoard::inCheckAfterMove(ChessField* source_field, 
