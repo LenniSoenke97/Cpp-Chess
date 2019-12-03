@@ -11,6 +11,7 @@ class ChessBoard
   bool white_turn;
   bool game_over = true;
   bool virtual_move = false;
+  bool print_movement_error;
 
   /*
    * Description: iterates through board and removes all pieces

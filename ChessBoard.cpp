@@ -140,10 +140,12 @@ bool ChessBoard::noMovesPossible()
 bool ChessBoard::canMakeMove(ChessField* source_field, 
 			     ChessField* destination_field)
 {
+  print_movement_error = true;
   if(!isFieldWithPiece(source_field)) return false;
   if(!isPlayer(source_field)) return false;
   if(!isMovement(source_field, destination_field)) return false;
   
+  print_movement_error = false;
   if(!source_field->piece->canMakeMove(source_field, 
 				       destination_field, 
 				       board)) return false;
@@ -223,7 +225,7 @@ bool ChessBoard::isPlayer(ChessField* source_field) const
 void ChessBoard::printMovementError(ChessField* source_field, 
 				    ChessField* destination_field) const
 {
-  if (virtual_move) return;
+  if (virtual_move || !print_movement_error) return;
   if (!source_field->piece) return;
   fprintf(stderr, "%s's %s cannot move to %s \n",
 	  (white_turn ? "White" : "Black"),
