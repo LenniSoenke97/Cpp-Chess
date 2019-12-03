@@ -61,10 +61,10 @@ class ChessBoard
    *              False if a figure can move
    */
   bool noMovesPossible();
-
+  
   /*
    * Description: will call various functions to validate whether the supplied
-   *              move (source to destination) is a valid one
+   *              move (source to destination) is a valid one.
    * Input:       ChessField* source_field: the field the player wants to move the
    *              piece from.
    *              ChessField* destination_field: the field the players wants to move
@@ -194,7 +194,7 @@ class ChessBoard
     for (int i=0; i<8; i++) {
       cout << ( (i % 3) ? ':' : '|' ) << " ";
       if (data[i]->piece) { }
-      //cout << ( (data[i]->piece) ? data[i]->piece->display : ' ') << " ";
+      cout << ( (data[i]->piece) ? data[i]->piece->display()[0] : ' ') << " ";
     }
     cout << "|" << '\n';
   }

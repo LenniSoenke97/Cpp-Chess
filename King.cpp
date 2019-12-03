@@ -36,5 +36,5 @@ bool King::castling(ChessField* source, ChessField* destination, ChessField* boa
 }
 
 char* King::display() const {
-  return "King";
+  return (char*) "King";
 }

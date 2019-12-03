@@ -7,18 +7,20 @@
 **- add a clean call in makefile that removes all .o and all .gch files
 **- make sure all funcitns have "override"
 **- fix compilation errors
-
+**- remove error printing from piece
+**- make board error printing functions
 **- split all my checks into different functions
-- make global constants file and import everywhere, do the #define
-- remove error printing from piece
-- make board error printing functions
-- make castling function in ChessBoard
-- make all the applicable chessboard.cpp functions const
+**- make global constants file and import everywhere, do the #define
+**- make all the applicable chessboard.cpp functions const
+
+
 - pass the board by const reference because it is expsneive to copy??
-
 - re-arrange ChessBoard.cpp so function in right order
-
 - make text output similar to what is seen in labts test
+- implement destructors
+- comment constructor and destructors
+- make the right attributes and parameters const
+- make castling function in ChessBoard
 
 
 - WHEN AT HOME: change all arguments in canMove functions (and other
@@ -26,13 +28,6 @@ functions like the killDiagonal) to const references -
 https://co517.pages.doc.ic.ac.uk/decks/MSc/StructuringData.pdf (page 32)
 ==> ask max
 
-
-- implement castling
-- check for memory leaks
-- implement destructors
-- comment constructor and destructors
-- implement castling
-- make the right attributes and parameters const
 
 // Global changes stage
 - find better solution for stalemate (max)
@@ -50,3 +45,4 @@ and then stalemate)
 - reindent
 - remove "// delete"
 - remove print board helper functions and all "display" attribute setting
+- check for memory leaks

@@ -11,5 +11,5 @@ bool Queen::canMakeMove(ChessField* source, ChessField* destination, ChessField*
 }
 
 char* Queen::display() const {
-  return "Queen";
+  return (char*) "Queen";
 }

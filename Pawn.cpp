@@ -37,5 +37,5 @@ void Pawn::hasMoved()
 }
 
 char* Pawn::display() const {
-  return "Pawn";
+  return (char*) "Pawn";
 }

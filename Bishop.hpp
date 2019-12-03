@@ -3,7 +3,6 @@
 
 #include"Piece.hpp"
 #include"ChessField.hpp"
-#include"Global.h"
 
 class Bishop : public Piece
 {

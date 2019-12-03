@@ -5,7 +5,6 @@
 #include"Queen.hpp"
 #include"King.hpp"
 #include"Pawn.hpp"
-#include"Global.h"
 
 void ChessBoard::clearBoard()
 {
@@ -53,6 +52,8 @@ void ChessBoard::setupBoard()
   }
     
   white_turn = true;
+  game_over = false;
+  printf("A new chess game is started!\n");
 }
 
 bool ChessBoard::charPositionToIntPosition(const char* char_pos, int& int_row_pos, int& int_col_pos)
@@ -118,6 +119,7 @@ bool ChessBoard::noMovesPossible()
     for (int row=0; row < NUM_OF_ROWS; row++) {
       for (int col=0; col < NUM_OF_COLS; col++) {
 	field = board[row][col];
+	if (friendly_fields[current_field] == field) continue;
 	if (canMakeMove(friendly_fields[current_field], field)) {
 	  return false;
 	}
@@ -129,7 +131,7 @@ bool ChessBoard::noMovesPossible()
 
 bool ChessBoard::isMovement(ChessField* source_field, ChessField* destination_field) const {
   if (source_field == destination_field) {
-    fprintf(stderr, "You must move a piece, it cannot stay on same field");
+    if (!virtual_move) fprintf(stderr, "You must move a piece, it cannot stay on same field\n");
     return false;
   }
   return true;
@@ -137,8 +139,8 @@ bool ChessBoard::isMovement(ChessField* source_field, ChessField* destination_fi
 
 bool ChessBoard::isFieldWithPiece(ChessField* source_field) const {
   if (!source_field->piece) {
-    fprintf(stderr, "There is no chess piece on the field you have selected "
-	    "(%s). Thus the move is invalid", source_field->char_position);
+    if (!virtual_move) fprintf(stderr, "There is no chess piece on the field you have selected "
+	    "(%s). Thus the move is invalid. \n", source_field->char_position);
     return false;
   }
   return true;
@@ -146,8 +148,8 @@ bool ChessBoard::isFieldWithPiece(ChessField* source_field) const {
 
 bool ChessBoard::isPlayer(ChessField* source_field) const {
   if(white_turn != source_field->piece->is_white) {
-    fprintf(stderr, "%s is allowed to move. The piece in position %s is %s"
-	    " .Thus the move is invalid.",
+    if (!virtual_move) fprintf(stderr, "%s is allowed to move. The piece in position %s is %s"
+	    ". Thus the move is invalid. \n",
 	    (white_turn ? "White" : "Black"),
 	    source_field->char_position,
 	    (source_field->piece->is_white ? "White" : "Black"));
@@ -158,7 +160,8 @@ bool ChessBoard::isPlayer(ChessField* source_field) const {
 
 void ChessBoard::printMovementError(ChessField* source_field, ChessField* destination_field) const {
   if (virtual_move) return;
-  fprintf(stderr, "Could not move %s's %s from %s to %s /n",
+  if (!source_field->piece) return;
+  fprintf(stderr, "Could not move %s's %s from %s to %s \n",
 	  (white_turn ? "White" : "Black"),
 	  source_field->piece->display(),
 	  source_field->char_position,
@@ -187,7 +190,7 @@ void ChessBoard::handleGameResult(bool king_in_check, bool no_moves_possible) {
   if (no_moves_possible) {
     game_over = true;
     if (king_in_check) {
-      printf("%s is in checkmate",
+      printf("%s is in checkmate \n",
 	     (white_turn ? "White" : "Black"));
     }
     else {
@@ -196,7 +199,7 @@ void ChessBoard::handleGameResult(bool king_in_check, bool no_moves_possible) {
   }
   else {
     if (king_in_check) {
-      printf("%s is in check",
+      printf("%s is in check \n",
 	     (white_turn ? "White" : "Black")
 	     );
     }
@@ -214,10 +217,17 @@ bool ChessBoard::destinationFieldIsFriendly(ChessField* source_field, ChessField
 
 bool ChessBoard::canMakeMove(ChessField* source_field, ChessField* destination_field)
 {
+  if(!isFieldWithPiece(source_field)) return false;
+  if(!isPlayer(source_field)) return false;
+  if(!isMovement(source_field, destination_field)) return false;
+
+  
   if(!source_field->piece->canMakeMove(source_field, destination_field, board)) return false;
   if(destinationFieldIsFriendly(source_field, destination_field)) return false;
 
-  // maybe move below to seperate function
+  // make below into seperate func
+  
+  bool can_make_move = true;
   Piece* dead_piece = nullptr;
   if(source_field->piece && destination_field->piece) {
     if (source_field->piece->is_white != destination_field->piece->is_white) {
@@ -227,15 +237,15 @@ bool ChessBoard::canMakeMove(ChessField* source_field, ChessField* destination_f
   destination_field->piece = source_field->piece;
   source_field->piece = nullptr;
 
-  bool return_value = true;
-  if(kingInCheck() && !virtual_move) {
-    return_value = false;
-  };
+  if(kingInCheck() && !virtual_move) { // find a solution for this
+    can_make_move = false;
+  }
 
   source_field->piece = destination_field->piece;
   destination_field->piece = dead_piece;
+
+  return can_make_move;
   
-  return return_value;
 }
 
 ChessBoard::ChessBoard() { setupBoard(); }
@@ -246,8 +256,6 @@ void ChessBoard::resetBoard()
 {
   clearBoard();
   setupBoard();
-  game_over = false;
-  printf("A new chess game is started!\n");
 }
 
 void ChessBoard::submitMove(const char* source, const char* destination)
@@ -258,7 +266,6 @@ void ChessBoard::submitMove(const char* source, const char* destination)
     return;
   }
   
-  bool movement_error = false;
   int source_row, source_col, destination_row, destination_col;
   if (!charPositionToIntPosition(source, source_row, source_col)) return;
   if (!charPositionToIntPosition(destination, destination_row, destination_col)) return;
@@ -266,15 +273,10 @@ void ChessBoard::submitMove(const char* source, const char* destination)
   ChessField* source_field = board[source_row][source_col];
   ChessField* destination_field = board[destination_row][destination_col];
 
-  if(!isMovement(source_field, destination_field)) movement_error = true;
-  if(!isFieldWithPiece(source_field)) movement_error = true;
-  if(!isPlayer(source_field)) movement_error = true;
-  if(!canMakeMove(source_field, destination_field)) movement_error = true;
-
-  if (movement_error) {
+  if(!canMakeMove(source_field, destination_field)) {
     printMovementError(source_field, destination_field);
+    return;
   }
-
   
   bool kill = false;
   if(source_field->piece && destination_field->piece) {
@@ -285,6 +287,7 @@ void ChessBoard::submitMove(const char* source, const char* destination)
   
   printMovement(source_field, destination_field, kill);
 
+  
   if (kill) delete destination_field->piece;
   destination_field->piece = source_field->piece;
   source_field->piece = nullptr;
@@ -293,9 +296,12 @@ void ChessBoard::submitMove(const char* source, const char* destination)
 
   virtual_move = true;
   bool king_in_check = kingInCheck();
+  virtual_move = false;
   bool no_moves_possible = noMovesPossible();
   handleGameResult(king_in_check, no_moves_possible);
-  virtual_move = false;
+
+  // display_board(); // delete
+
 }
 
 

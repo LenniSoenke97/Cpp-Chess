@@ -12,5 +12,5 @@ bool  Knight::canMakeMove(ChessField* source, ChessField* destination, ChessFiel
 }
 
 char* Knight::display() const {
-  return "Knight";
+  return (char*) "Knight";
 }

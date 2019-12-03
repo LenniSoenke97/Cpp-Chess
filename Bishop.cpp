@@ -1,5 +1,4 @@
 #include"Bishop.hpp"
-#include"Global.h"
 
 bool Bishop::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const
 { 
@@ -8,5 +7,5 @@ bool Bishop::canMakeMove(ChessField* source, ChessField* destination, ChessField
 }
 
 char* Bishop::display() const {
-  return "Bishop";
+  return (char*) "Bishop";
 }

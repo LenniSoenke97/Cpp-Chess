@@ -10,5 +10,5 @@ bool  Rook::canMakeMove(ChessField* source, ChessField* destination, ChessField*
 }
 
 char* Rook::display() const {
-  return "Rook";
+  return (char*) "Rook";
 }
