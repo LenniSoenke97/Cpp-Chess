@@ -154,7 +154,7 @@ bool ChessBoard::canMakeMove(ChessField* source_field,
 }
 
 bool ChessBoard::inCheckAfterMove(ChessField* source_field, 
-          ChessField* destination_field)
+				  ChessField* destination_field)
 {
   if (virtual_move) return false;
   bool in_check = false;

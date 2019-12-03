@@ -1,4 +1,4 @@
-cc=g++ -Wall -Wextra -g
+cc=g++ -Wall -g
 pieces=Bishop.o Rook.o King.o Queen.o Knight.o Pawn.o
 other=ChessBoard.o Piece.o ChessField.o ChessMain.o
 

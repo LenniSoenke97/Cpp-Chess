@@ -61,7 +61,21 @@ class ChessBoard
    *              False if a figure can move
    */
   bool noMovesPossible();
-  
+
+  /*
+   * Description: will call various functions to validate whether the supplied
+   *              move (source to destination) is a valid one.
+   * Input:       ChessField* source_field: the field the player wants to move 
+   *              the piece from.
+   *              ChessField* destination_field: the field the players wants 
+   *              to move the piece to.
+   * Output:      True if move is valid
+   *              False if not
+   * Description: will execute
+   */
+  bool canMakeMove(ChessField* source_field,
+		   ChessField* destination_field);
+
   /*
    * Description: will execute the proposed move if the move is not a virtual
    *              move and will then check and return whether the player making 
@@ -74,20 +88,7 @@ class ChessBoard
    *              False if not
    */
   bool inCheckAfterMove(ChessField* source_field, 
-    ChessField* destination_field);
-
-  /* 
-   * Description: checks if there is actual movement from source_field to 
-   *              destination_field since pieces cannot stay on same field.
-   * Input:       ChessField* source_field: the field the player wants to move
-   *              the piece from.
-   *              ChessField* destination_field: the field the players wants
-   *              to move the piece to.
-   * Output:      True if movement occurs
-   *              False if not
-   */
-  bool isMovement(ChessField* source_field, ChessField* destination_field) 
-    const;
+			ChessField* destination_field);
 
   /* 
    * Description: checks if there is actual movement from source_field to 
