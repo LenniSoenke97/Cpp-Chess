@@ -40,9 +40,6 @@ public:
    */
   char* display() const override;
 
-
-  bool castling(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const;
-
 };
 
 #endif

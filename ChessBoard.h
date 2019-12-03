@@ -1,8 +1,6 @@
 #ifndef CHESSBOARD
 #define CHESSBOARD
 
-#include<iostream> // delete
-#include"Piece.hpp" // delete
 #include"Global.h"
 #include"ChessField.hpp"
 
@@ -145,14 +143,31 @@ class ChessBoard
    *              possible moves
    * Output:      void
    */
-  void handleGameResult(bool king_in_check, bool no_moves_possible);
+  void handleGameResult(const bool king_in_check, const bool no_moves_possible);
 
+  /* 
+   * Description: checks if the supplied move is a castling move and executes the move
+   *              if yes.
+   * Input:       ChessField* source_field: the field the player wants to move the
+   *              piece from.
+   *              ChessField* destination_field: the field the players wants to move
+   *              the piece to.bool king_in_check: boolean indicating whether king is in check
+   *              bool no_moves_possible: boolean indicating whether the player has no 
+   *              possible moves
+   * Output:      True if the move is a castling move
+   *              False if not
+   */
+  bool isCastling(ChessField* source_field, ChessField* destination_field);
 
  public:
-  
-  ChessBoard();
-  ~ChessBoard();
 
+  /*
+   * Chessboard constructor
+   * Description: sets up new game automatically
+   * Input:       none
+   */
+  ChessBoard();
+  
   /*
    * Description: calls the clearBoard() and setupBoard() functions to remove all
    *              current pieces and fields from the board and then place new
@@ -175,41 +190,11 @@ class ChessBoard
    */
   void submitMove(const char* source, const char* destination);
 
-  
-
-
   /*
-   * Helper functions
+   * ChessBoard destruoctr
+   * Description: loops through board and delete all ChessFields
    */
-
-  void print_frame(int row) {
-    if (!(row % 3))
-      cout << "  +===========+===========+===========+" << '\n';
-    else
-      cout << "  +---+---+---+---+---+---+---+---+---+" << '\n';
-  }
-
-  void print_row(ChessField* data[], int row) {
-    cout << (char) ('A' + row) << " ";
-    for (int i=0; i<8; i++) {
-      cout << ( (i % 3) ? ':' : '|' ) << " ";
-      if (data[i]->piece) { }
-      cout << ( (data[i]->piece) ? data[i]->piece->display()[0] : ' ') << " ";
-    }
-    cout << "|" << '\n';
-  }
-
-  void display_board() {
-    cout << "    ";
-    for (int r=0; r<8; r++) 
-      cout << (char) ('1'+r) << "   ";
-    cout << '\n';
-    for (int r=0; r<8; r++) {
-      print_frame(r);
-      print_row(board[r],r);
-    }
-    print_frame(8);
-  }
+  ~ChessBoard();
 
 };
 

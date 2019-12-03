@@ -9,8 +9,6 @@ class Pawn : public Piece
 
   int pawn_max_distance = 2;
   
-private:
-  
   /*
    * Description: this function checks whether the provided destination field
    *              is diagonal from the source field, within a distance of 1 and 
@@ -57,7 +55,7 @@ public:
    */
   void hasMoved() override;
 
-    /* 
+  /* 
    * Description: returns the name of the piece
    * Input:       none
    * Output:      char* name of the piece

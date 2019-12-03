@@ -12,37 +12,32 @@
 **- split all my checks into different functions
 **- make global constants file and import everywhere, do the #define
 **- make all the applicable chessboard.cpp functions const
+**- re-arrange ChessBoard.cpp so function in right order
+**- make castling function in ChessBoard
+**- make text output similar to what is seen in labts test
+**- comment constructor and destructors
+**- make the right attributes and parameters const
 
 
-- pass the board by const reference because it is expsneive to copy??
-- re-arrange ChessBoard.cpp so function in right order
-- make text output similar to what is seen in labts test
-- implement destructors
-- comment constructor and destructors
-- make the right attributes and parameters const
-- make castling function in ChessBoard
 
-
-- WHEN AT HOME: change all arguments in canMove functions (and other
-functions like the killDiagonal) to const references -
-https://co517.pages.doc.ic.ac.uk/decks/MSc/StructuringData.pdf (page 32)
-==> ask max
-
-
-// Global changes stage
-- find better solution for stalemate (max)
-- make max check makefile (max)
-- change the parameters passed (follow best practices from lecture slides)
-- TEST stalemate (set only two pawns who are in front of each other
-and then stalemate)
-- TEST castling
-- check with max the structure of my classes
 
 // Submission stage
-- remove display_board and the display attribute
-- remove all .o files and other files
+**- remove display_board and the display attribute
+**- remove print board helper functions and all "display" attribute setting
+**- check for memory leaks
+**- remove the code I added in chessmain
+**- remove the code I added in setupboard()
+
 - make sure all lines break after 80 characters
 - reindent
 - remove "// delete"
-- remove print board helper functions and all "display" attribute setting
-- check for memory leaks
+- remove all .o files and other files
+- check 1 to 1 with labts
+
+// after first submission
+- check with max the structure of my classes
+- change the parameters passed (follow best practices from lecture
+  slides)
+  https://co517.pages.doc.ic.ac.uk/decks/MSc/StructuringData.pdf (page 32)
+- pass the board by const reference because it is expsneive to copy??
+- check with max whether valgrind errors matter

@@ -19,7 +19,13 @@ struct ChessField
    *              Piece* piece: the initial piece on the field
    *              (nullptr, ie. empty field, by default)
    */
-  ChessField(int row, int col, Piece* piece = nullptr);
+  ChessField(const int row, const int col, Piece* piece = nullptr);
+
+  /*
+   * ChessField destructor
+   * Description: delete the ChessField piece if one has been created
+   */
+  ~ChessField();
 };
 
 #endif

@@ -140,9 +140,17 @@ public:
    */
   virtual bool getHasMoved() const;
 
-  virtual ~Piece() {};
-
+  /*
+   * Description: a pure virtual function for displaying the name of the given piece
+   * Input:       none
+   * Output:      char* the name of the piece
+   */
   virtual char* display() const = 0;
+  
+  /*
+   * Piece destructor
+   */
+  virtual ~Piece() {};
 
 };
 
