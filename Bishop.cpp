@@ -1,7 +1,12 @@
 #include"Bishop.hpp"
+#include"Global.h"
 
-bool Bishop::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) const
+bool Bishop::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const
 { 
   if (canMoveDiagonal(source, destination, board)) return true;  
   return false;
+}
+
+char* Bishop::display() const {
+  return "Bishop";
 }

@@ -1,7 +1,7 @@
 #include <cstdlib>
 #include"Knight.hpp"
 
-bool  Knight::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) const
+bool  Knight::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const
 {
   int difference_row = abs(source->row - destination->row);
   int difference_col = abs(source->col - destination->col);
@@ -9,4 +9,8 @@ bool  Knight::canMakeMove(ChessField* source, ChessField* destination, ChessFiel
     return true;
   }
   return false;
-};
+}
+
+char* Knight::display() const {
+  return "Knight";
+}

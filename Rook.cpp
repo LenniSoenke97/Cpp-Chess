@@ -1,6 +1,7 @@
 #include"Rook.hpp"
 
-bool  Rook::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) const
+bool  Rook::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]
+) const
 {
   if (canMoveVertical(source, destination, board)) return true;
   if (canMoveHorizontal(source, destination, board)) return true;
@@ -8,3 +9,6 @@ bool  Rook::canMakeMove(ChessField* source, ChessField* destination, ChessField*
   return false;
 }
 
+char* Rook::display() const {
+  return "Rook";
+}

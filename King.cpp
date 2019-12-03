@@ -1,8 +1,7 @@
 #include"King.hpp"
-#include"Rook.hpp"
-#include<iostream> // delete
+#include"Rook.hpp" // delete
 
-bool  King::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) const
+bool  King::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const
 {
   if (!isWithinMaxDistance(source, destination, king_max_distance)) return false;
   if (canMoveDiagonal(source, destination, board)) return true;
@@ -12,7 +11,7 @@ bool  King::canMakeMove(ChessField* source, ChessField* destination, ChessField*
   return false;
 }
 
-bool King::castling(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make thesr to const*/) const
+bool King::castling(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const
 {
   // completely wrong
   
@@ -34,4 +33,8 @@ bool King::castling(ChessField* source, ChessField* destination, ChessField* boa
   }
     
   return true;
+}
+
+char* King::display() const {
+  return "King";
 }

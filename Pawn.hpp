@@ -3,6 +3,7 @@
 
 #include"Piece.hpp"
 #include"ChessField.hpp"
+#include"Global.h"
 
 class Pawn : public Piece
 {
@@ -30,11 +31,8 @@ public:
    *              class constructor
    * Input:       bool isWhite: boolean indicating whether it is a white piece
    */
-  Pawn(bool isWhite):Piece::Piece(isWhite)
-  {
-    display = "Pawn"; //delete this
-  };
-
+  Pawn(bool isWhite):Piece::Piece(isWhite) {};
+  
   /*
    * Description: canMakeMove returns whether a pawn on a certain source field can make
    *              a move to a given destination field. The function checks whether the 
@@ -49,7 +47,7 @@ public:
    * Output:      True if move is valid
    *              False if move is invalid
    */
-  bool canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) const override;
+  bool canMakeMove(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const override;
 
   /*
    * Description: this function marks sets the pawn's has_moved attribute to true and changes
@@ -59,6 +57,13 @@ public:
    * Output:      void
    */
   void hasMoved() override;
+
+    /* 
+   * Description: returns the name of the piece
+   * Input:       none
+   * Output:      char* name of the piece
+   */
+  char* display() const override;
 
 };
 #endif

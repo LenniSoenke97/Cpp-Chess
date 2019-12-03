@@ -14,7 +14,8 @@ bool Pawn::canKillDiagonal(ChessField* source, ChessField* destination) const
   return false;
 }
 
-bool Pawn::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) const
+bool Pawn::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]
+) const
 {
 
   if (canKillDiagonal(source, destination)) return true;
@@ -35,4 +36,6 @@ void Pawn::hasMoved()
   pawn_max_distance = 2;
 }
 
-
+char* Pawn::display() const {
+  return "Pawn";
+}

@@ -3,17 +3,16 @@
 
 #include<iostream> // delete
 #include"Piece.hpp" // delete
-
-#include<string>
+#include"Global.h"
 #include"ChessField.hpp"
-
-using namespace std; // delete
 
 class ChessBoard
 {
-  
-  ChessField* board[8][8]; // insert constants here 
+
+  ChessField* board[NUM_OF_ROWS][NUM_OF_COLS];
   bool white_turn;
+  bool game_over = true;
+  bool virtual_move = false;
 
   /*
    * Description: iterates through board and removes all pieces
@@ -74,7 +73,80 @@ class ChessBoard
    *              False if not
    */
   bool canMakeMove(ChessField* source_field, ChessField* destination_field);
-  
+
+  /* 
+   * Description: checks if there is actual movement from source_field to destination_field
+   *              since pieces cannot stay on same field.
+   * Input:       ChessField* source_field: the field the player wants to move the
+   *              piece from.
+   *              ChessField* destination_field: the field the players wants to move
+   *              the piece to.
+   * Output:      True if movement occurs
+   *              False if not
+   */
+  bool isMovement(ChessField* source_field, ChessField* destination_field) const;
+
+  /* 
+   * Description: checks that there is a piece on the source_field
+   * Input:       ChessField* source_field: the field the player wants to move the
+   *              piece from.
+   * Output:      True if there is a piece on the source_field
+   *              False if not
+   */
+  bool isFieldWithPiece(ChessField* source_field) const;
+
+  /* 
+   * Description: checks if the piece that is being moved belongs to the player whose
+   *              turn it is.
+   * Input:       ChessField* source_field: the field the player wants to move the
+   *              piece from.
+   * Output:      True if current player is moving a piece of his own colour
+   *              False if not
+   */
+  bool isPlayer(ChessField* source_field) const;
+
+  /* 
+   * Description: checks whether the destination field has a friendly piece on it
+   * Input:       ChessField* source_field: the field the player wants to move the
+   *              piece from.
+   *              ChessField* destination_field: the field the players wants to move
+   *              the piece to.
+   * Output:      True if destination has friendly piece
+   *              False if not
+   */
+  bool destinationFieldIsFriendly(ChessField* source_field, ChessField* destination_field) const;
+
+  /* 
+   * Description: prints out any movement errors
+   * Input:       ChessField* source_field: the field the player wants to move the
+   *              piece from.
+   *              ChessField* destination_field: the field the players wants to move
+   *              the piece to.
+   * Output:      void
+   */
+  void printMovementError(ChessField* source_field, ChessField* destination_field) const;
+
+  /* 
+   * Description: prints out any movement
+   * Input:       ChessField* source_field: the field the player wants to move the
+   *              piece from.
+   *              ChessField* destination_field: the field the players wants to move
+   *              the piece to.
+   * Output:      void
+   */
+  void printMovement(ChessField* source_field, ChessField* destination_field, bool kill) const;
+
+  /* 
+   * Description: prints out game result and set game_over to true if game has ended
+   *              the game result options are: player is in check, player is in checkmate,
+   *              stalemate or nothing.
+   * Input:       bool king_in_check: boolean indicating whether king is in check
+   *              bool no_moves_possible: boolean indicating whether the player has no 
+   *              possible moves
+   * Output:      void
+   */
+  void handleGameResult(bool king_in_check, bool no_moves_possible);
+
 
  public:
   
@@ -138,11 +210,6 @@ class ChessBoard
     }
     print_frame(8);
   }
-
-
-
-
-
 
 };
 

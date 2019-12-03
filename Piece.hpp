@@ -3,8 +3,7 @@
 
 #include"ChessField.hpp"
 #include<string>
-//const int CHESSBOARD_ROWS = 8;
-//const int CHESSBOARD_COLS = 8;
+#include"Global.h"
 
 using namespace std;
 
@@ -33,7 +32,7 @@ protected:
    */
   bool canMoveDiagonal(ChessField* source,
 		       ChessField* destination,
-		       ChessField* board[8][8]) const;
+		       ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const;
 
   /*
    * Description: checks whether the source and destination fields
@@ -53,7 +52,7 @@ protected:
    */
   bool canMoveHorizontal(ChessField* source,
 			 ChessField* destination,
-			 ChessField* board[8][8]) const;
+			 ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const;
   
 
   /*
@@ -74,7 +73,7 @@ protected:
    */
   bool canMoveVertical(ChessField* source,
 		       ChessField* destination,
-		       ChessField* board[8][8]) const;
+		       ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const;
 
   /*
    * Description: checks whether the destination field is within the
@@ -123,7 +122,9 @@ public:
    *              is allowed for the piece on the source field.
    *              False otherwise
    */
-  virtual bool canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) const = 0;
+  virtual bool canMakeMove(ChessField* source,
+			   ChessField* destination,
+			   ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const = 0;
 
   /*
    * Description: sets the has_moved attribute to 1

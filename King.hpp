@@ -18,11 +18,7 @@ public:
    *              moving distance to 1.
    * Input:       bool isWhite: boolean indicating whether it is a white piece
    */
-  King(bool isWhite):Piece::Piece(isWhite)
-  {
-    display = "King"; //delete this
-  };
-
+  King(bool isWhite):Piece::Piece(isWhite) {};
   /*
    * Description: canMakeMove returns whether a king on a certain source field can make
    *              a move to a given destination field. The function checks whether the 
@@ -35,9 +31,17 @@ public:
    * Output:      True if move is valid
    *              False if move is invalid
    */
-  bool  canMakeMove(ChessField* source, ChessField* destination, ChessField* board[8][8] /*make these to const*/) const override;
+  bool  canMakeMove(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const override;
 
-  bool castling(ChessField* source, ChessField* destination, ChessField* board[8][8]) const;
+   /* 
+   * Description: returns the name of the piece
+   * Input:       none
+   * Output:      char* name of the piece
+   */
+  char* display() const override;
+
+
+  bool castling(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]) const;
 
 };
 

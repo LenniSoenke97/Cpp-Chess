@@ -8,6 +8,15 @@
 **- make sure all funcitns have "override"
 **- fix compilation errors
 
+**- split all my checks into different functions
+- make global constants file and import everywhere, do the #define
+- remove error printing from piece
+- make board error printing functions
+- make castling function in ChessBoard
+- make all the applicable chessboard.cpp functions const
+- pass the board by const reference because it is expsneive to copy??
+
+- re-arrange ChessBoard.cpp so function in right order
 
 - make text output similar to what is seen in labts test
 
@@ -26,10 +35,7 @@ https://co517.pages.doc.ic.ac.uk/decks/MSc/StructuringData.pdf (page 32)
 - make the right attributes and parameters const
 
 // Global changes stage
-- find an elegant solution to "max_distance" (max)
 - find better solution for stalemate (max)
-- put on error_handling (but not when checking for check or for
-stalemate) (max)
 - make max check makefile (max)
 - change the parameters passed (follow best practices from lecture slides)
 - TEST stalemate (set only two pawns who are in front of each other
