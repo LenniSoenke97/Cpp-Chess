@@ -140,12 +140,12 @@ bool ChessBoard::noMovesPossible()
 bool ChessBoard::canMakeMove(ChessField* source_field, 
 			     ChessField* destination_field)
 {
-  print_movement_error = true;
+  print_movement_error = false;
   if(!isFieldWithPiece(source_field)) return false;
   if(!isPlayer(source_field)) return false;
   if(!isMovement(source_field, destination_field)) return false;
   
-  print_movement_error = false;
+  print_movement_error = true;
   if(!source_field->piece->canMakeMove(source_field, 
 				       destination_field, 
 				       board)) return false;
@@ -192,7 +192,7 @@ bool ChessBoard::isFieldWithPiece(ChessField* source_field) const
 {
   if (!source_field->piece) {
     if (!virtual_move) fprintf(stderr, 
-			       "There is no piece at position %s \n", 
+			       "There is no piece at position %s! \n", 
 			       source_field->char_position);
     return false;
   }
@@ -216,7 +216,7 @@ bool ChessBoard::isPlayer(ChessField* source_field) const
   if(white_turn != source_field->piece->is_white) {
     if (!virtual_move) fprintf(stderr, 
 			       "It is not %s's turn to move! \n" ,
-			       (white_turn ? "White" : "Black"));
+			       (white_turn ? "Black" : "White"));
     return false;
   }
   return true;
@@ -227,7 +227,7 @@ void ChessBoard::printMovementError(ChessField* source_field,
 {
   if (virtual_move || !print_movement_error) return;
   if (!source_field->piece) return;
-  fprintf(stderr, "%s's %s cannot move to %s \n",
+  fprintf(stderr, "%s's %s cannot move to %s! \n",
 	  (white_turn ? "White" : "Black"),
 	  source_field->piece->display(),
 	  destination_field->char_position);
