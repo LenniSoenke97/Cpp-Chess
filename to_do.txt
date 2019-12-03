@@ -28,11 +28,11 @@
 **- remove the code I added in chessmain
 **- remove the code I added in setupboard()
 
-- make sure all lines break after 80 characters
-- reindent
-- remove "// delete"
-- remove all .o files and other files
-- check 1 to 1 with labts
+**- make sure all lines break after 80 characters
+**- reindent
+**- remove "// delete"
+**- remove all .o files and other files
+**- check 1 to 1 with labts
 
 // after first submission
 - check with max the structure of my classes

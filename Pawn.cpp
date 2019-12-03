@@ -14,8 +14,10 @@ bool Pawn::canKillDiagonal(ChessField* source, ChessField* destination) const
   return false;
 }
 
-bool Pawn::canMakeMove(ChessField* source, ChessField* destination, ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]
-) const
+bool Pawn::canMakeMove(ChessField* source, 
+		       ChessField* destination, 
+		       ChessField* board[NUM_OF_ROWS][NUM_OF_COLS]
+		       ) const
 {
 
   if (canKillDiagonal(source, destination)) return true;
@@ -24,7 +26,9 @@ bool Pawn::canMakeMove(ChessField* source, ChessField* destination, ChessField* 
   if (difference_col != 0) return false;
   if (difference_row*this->is_white < 0) return false;
   if (destination->piece) return false;
-  if (!isWithinMaxDistance(source, destination, pawn_max_distance)) return false;
+  if (!isWithinMaxDistance(source, 
+			   destination, 
+			   pawn_max_distance)) return false;
   if (canMoveVertical(source, destination, board)) return true;
 
   return false;

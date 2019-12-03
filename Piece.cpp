@@ -15,7 +15,8 @@ bool Piece::canMoveDiagonal(ChessField* source,
 
   int row_change = (source->row > destination->row) ? -1 : 1;
   int col_change = (source->col > destination->col) ? -1 : 1;
-  int current_row = source->row+row_change, current_col = source->col+col_change;
+  int current_row = source->row+row_change, 
+    current_col = source->col+col_change;
   ChessField* current_field;
   while(current_row != destination->row && current_col != destination->col) {
     current_field = board[current_row][current_col];
@@ -62,7 +63,7 @@ bool Piece::canMoveVertical(ChessField* source,
 
   return true;
     
-};
+}
 
 bool Piece::isWithinMaxDistance(ChessField* source,
 				ChessField* destination,
@@ -70,7 +71,8 @@ bool Piece::isWithinMaxDistance(ChessField* source,
 {
   int row_distance = abs(source->row - destination->row);
   int col_distance = abs(source->col - destination->col); 
-  int source_to_dest_distance = (row_distance < col_distance) ? col_distance : row_distance;
+  int source_to_dest_distance = 
+    (row_distance < col_distance) ? col_distance : row_distance;
   return source_to_dest_distance <= max_distance;
 }
 

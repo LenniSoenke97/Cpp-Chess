@@ -59,13 +59,18 @@ void ChessBoard::setupBoard()
   printf("A new chess game is started!\n");
 }
 
-bool ChessBoard::charPositionToIntPosition(const char* char_pos, int& int_row_pos, int& int_col_pos)
+bool ChessBoard::charPositionToIntPosition(const char* char_pos, 
+					   int& int_row_pos, 
+					   int& int_col_pos)
 {
   char char_col_pos = char_pos[0];
   char char_row_pos = char_pos[1];
   int_row_pos = (int)char_row_pos - (int)'1';
   int_col_pos = (int)char_col_pos - (int)'A';
-  if (int_col_pos < 0 || int_row_pos < 0 || int_col_pos >= NUM_OF_COLS || int_row_pos >= NUM_OF_ROWS) { 
+  if (int_col_pos < 0 || 
+      int_row_pos < 0 || 
+      int_col_pos >= NUM_OF_COLS || 
+      int_row_pos >= NUM_OF_ROWS) { 
     fprintf(stderr, "The given  position %s is invalid \n", char_pos);
     return false;
   }
@@ -77,7 +82,7 @@ bool ChessBoard::kingInCheck()
   int number_of_enemies = 0;
   ChessField* king_field;
   ChessField* field;
-  ChessField* enemy_fields[NUM_OF_PIECES_PER_PLAYER]; // make this constant
+  ChessField* enemy_fields[NUM_OF_PIECES_PER_PLAYER];
   for (int row=0; row < NUM_OF_ROWS; row++) {
     for (int col=0; col < NUM_OF_COLS; col++) {
       field = board[row][col];
@@ -132,18 +137,27 @@ bool ChessBoard::noMovesPossible()
   return true;
 }
 
-bool ChessBoard::canMakeMove(ChessField* source_field, ChessField* destination_field)
+bool ChessBoard::canMakeMove(ChessField* source_field, 
+			     ChessField* destination_field)
 {
   if(!isFieldWithPiece(source_field)) return false;
   if(!isPlayer(source_field)) return false;
   if(!isMovement(source_field, destination_field)) return false;
   
-  if(!source_field->piece->canMakeMove(source_field, destination_field, board)) return false;
+  if(!source_field->piece->canMakeMove(source_field, 
+				       destination_field, 
+				       board)) return false;
   if(destinationFieldIsFriendly(source_field, destination_field)) return false;
+  if(inCheckAfterMove(source_field, destination_field)) return false;
 
-  // make below into seperate func
-  
-  bool can_make_move = true;
+  return true;  
+}
+
+bool ChessBoard::inCheckAfterMove(ChessField* source_field, 
+          ChessField* destination_field)
+{
+  if (virtual_move) return false;
+  bool in_check = false;
   Piece* dead_piece = nullptr;
   if(source_field->piece && destination_field->piece) {
     if (source_field->piece->is_white != destination_field->piece->is_white) {
@@ -153,21 +167,20 @@ bool ChessBoard::canMakeMove(ChessField* source_field, ChessField* destination_f
   destination_field->piece = source_field->piece;
   source_field->piece = nullptr;
 
-  if(kingInCheck() && !virtual_move) { // find a solution for this
-    can_make_move = false;
-  }
+  if(kingInCheck()) in_check = true;
 
   source_field->piece = destination_field->piece;
   destination_field->piece = dead_piece;
 
-  return can_make_move;
-  
+  return in_check;
 }
 
-bool ChessBoard::isMovement(ChessField* source_field, ChessField* destination_field) const
+bool ChessBoard::isMovement(ChessField* source_field, 
+			    ChessField* destination_field) const
 {
   if (source_field == destination_field) {
-    if (!virtual_move) fprintf(stderr, "You must move a piece, it cannot stay on same field\n");
+    if (!virtual_move) fprintf(stderr, 
+			       "You must move a piece, it cannot stay on same field\n");
     return false;
   }
   return true;
@@ -176,15 +189,18 @@ bool ChessBoard::isMovement(ChessField* source_field, ChessField* destination_fi
 bool ChessBoard::isFieldWithPiece(ChessField* source_field) const
 {
   if (!source_field->piece) {
-    if (!virtual_move) fprintf(stderr, "There is no chess piece on the field you have selected "
-			       "(%s). Thus the move is invalid. \n", source_field->char_position);
+    if (!virtual_move) fprintf(stderr, 
+			       "There is no chess piece on the field you have selected "
+			       "(%s). Thus the move is invalid. \n", 
+			       source_field->char_position);
     return false;
   }
   return true;
 }
 
 
-bool ChessBoard::destinationFieldIsFriendly(ChessField* source_field, ChessField* destination_field) const
+bool ChessBoard::destinationFieldIsFriendly(ChessField* source_field, 
+					    ChessField* destination_field) const
 {
   if(source_field->piece && destination_field->piece) {
     if (source_field->piece->is_white == destination_field->piece->is_white) {
@@ -197,7 +213,8 @@ bool ChessBoard::destinationFieldIsFriendly(ChessField* source_field, ChessField
 bool ChessBoard::isPlayer(ChessField* source_field) const
 {
   if(white_turn != source_field->piece->is_white) {
-    if (!virtual_move) fprintf(stderr, "%s is allowed to move. The piece in position %s is %s"
+    if (!virtual_move) fprintf(stderr, 
+			       "%s is allowed to move. The piece in position %s is %s"
 			       ". Thus the move is invalid. \n",
 			       (white_turn ? "White" : "Black"),
 			       source_field->char_position,
@@ -207,7 +224,8 @@ bool ChessBoard::isPlayer(ChessField* source_field) const
   return true;
 }
 
-void ChessBoard::printMovementError(ChessField* source_field, ChessField* destination_field) const
+void ChessBoard::printMovementError(ChessField* source_field, 
+				    ChessField* destination_field) const
 {
   if (virtual_move) return;
   if (!source_field->piece) return;
@@ -219,7 +237,8 @@ void ChessBoard::printMovementError(ChessField* source_field, ChessField* destin
   return;
 }
 
-void ChessBoard::printMovement(ChessField* source_field, ChessField* destination_field, bool kill) const
+void ChessBoard::printMovement(ChessField* source_field, 
+			       ChessField* destination_field, bool kill) const
 {
   if(virtual_move) return;
   printf("%s's %s moves from %s to %s ",
@@ -258,7 +277,8 @@ void ChessBoard::handleGameResult(bool king_in_check, bool no_moves_possible)
   }
 }
 
-bool ChessBoard::isCastling(ChessField* source_field, ChessField* destination_field)
+bool ChessBoard::isCastling(ChessField* source_field, 
+			    ChessField* destination_field)
 {
   if (virtual_move) return false;
   if (!source_field->piece) return false;
@@ -276,7 +296,9 @@ bool ChessBoard::isCastling(ChessField* source_field, ChessField* destination_fi
   if (!( (Rook*) rook_field->piece)) return false;
   if (rook_field->piece->getHasMoved()) return false;
   if (kingInCheck()) return false;
-  for(int current_col = (source_field->col+1); current_col < rook_col; current_col += increment) {
+  for(int current_col = (source_field->col+1); 
+      current_col < rook_col; 
+      current_col += increment) {
     if (board[source_field->row][current_col]->piece) return false;
   }
 
@@ -284,7 +306,9 @@ bool ChessBoard::isCastling(ChessField* source_field, ChessField* destination_fi
   ChessField* last_field;
   ChessField* current_field = source_field;
   Piece* king = source_field->piece;
-  for(int current_col = source_field->col; current_col <= destination_col; current_col += increment) {
+  for(int current_col = source_field->col; 
+      current_col <= destination_col; 
+      current_col += increment) {
     last_field = current_field;
     current_field = board[source_field->row][current_col];
     last_field->piece = nullptr;
@@ -306,8 +330,9 @@ bool ChessBoard::isCastling(ChessField* source_field, ChessField* destination_fi
   else {
     last_field->piece = rook_field->piece;
     rook_field->piece = nullptr;
-    fprintf(stderr, "Castling has occured and %s's King has moved from %s to %s and the Rook "
-	    "on position %s has moved to %s \n",
+    fprintf(stderr, 
+	    "Castling has occured and %s's King has moved from %s to %s "
+	    "and the Rook on position %s has moved to %s \n",
 	    (white_turn ? "White" : "Black"),
 	    source_field->char_position,
 	    destination_field->char_position,
@@ -338,7 +363,9 @@ void ChessBoard::submitMove(const char* source, const char* destination)
   
   int source_row, source_col, destination_row, destination_col;
   if (!charPositionToIntPosition(source, source_row, source_col)) return;
-  if (!charPositionToIntPosition(destination, destination_row, destination_col)) return;
+  if (!charPositionToIntPosition(destination, 
+				 destination_row, 
+				 destination_col)) return;
     
   ChessField* source_field = board[source_row][source_col];
   ChessField* destination_field = board[destination_row][destination_col];

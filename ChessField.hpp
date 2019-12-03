@@ -12,12 +12,12 @@ struct ChessField
 
   /*
    * ChessField constructor
-   * Description: sets the row, column and initial piece on the
-   *              chess field, as well as the char_position.
+   * Description: sets the row, column and initial piece on the chess field, as 
+   *              well as the char_position.
    * Input:       int row: the row index of the field
    *              int col: the col index of the field
-   *              Piece* piece: the initial piece on the field
-   *              (nullptr, ie. empty field, by default)
+   *              Piece* piece: the initial piece on the field (nullptr, ie. 
+   *              empty field, by default)
    */
   ChessField(const int row, const int col, Piece* piece = nullptr);
 
