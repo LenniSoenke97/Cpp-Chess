@@ -21,10 +21,11 @@ bool Pawn::canMakeMove(ChessField* source,
 {
 
   if (canKillDiagonal(source, destination)) return true;
-  int difference_row = abs(source->row - destination->row);
+  int difference_row = source->row - destination->row;
   int difference_col = abs(source->col - destination->col);
   if (difference_col != 0) return false;
-  if (difference_row*this->is_white < 0) return false;
+  int white_direction = (this->is_white ? -1 : 1);
+  if (difference_row*white_direction < 0) return false;
   if (destination->piece) return false;
   if (!isWithinMaxDistance(source, 
 			   destination, 

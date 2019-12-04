@@ -351,7 +351,7 @@ void ChessBoard::resetBoard()
 }
 
 void ChessBoard::submitMove(const char* source, const char* destination)
-{
+{ 
   virtual_move = false;
   if (game_over) {
     printf("Game is over, please start a new one if you want to play \n");

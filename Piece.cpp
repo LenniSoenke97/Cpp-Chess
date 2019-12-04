@@ -38,7 +38,7 @@ bool Piece::canMoveHorizontal(ChessField* source,
   int current_col = source->col+col_change;
   ChessField* current_field;
   while(current_col != destination->col) {
-    current_field = board[current_col][source->row];
+    current_field = board[source->row][current_col];
     if(current_field->piece) return false;
     current_col += col_change;
   }
